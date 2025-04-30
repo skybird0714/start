@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>起始页</title>
+    <link rel="stylesheet" href="css/start.base.css">
+    <link rel="stylesheet" href="css/start.time.css">
+    <link rel="stylesheet" href="css/start.search.css">
+    <link rel="stylesheet" href="css/start.engine.css">
+    <link rel="stylesheet" href="css/start.footer.css">
+    <link rel="stylesheet" href="css/start.settings.css">
+    <link rel="stylesheet" href="css/start.night.css">
+    <link rel="stylesheet" href="css/start.responsive.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <div id="glass-bg"></div>
+    <div class="container">
+        <div class="time-section">
+            <div id="time" class="time" data-zh-TW=""></div>
+            <div class="date-weather-group">
+                <div id="date" class="date" data-zh-TW=""></div>
+            </div>
+            <div id="weather" class="weather" data-zh-TW=""></div>
+        </div>
+        <div class="search-section">
+            <div class="search-bar-glass">
+                <button id="engine-btn" class="engine-btn"><img id="engine-icon" src="icons/bing.png" alt="搜索引擎"></button>
+                <input id="search-input" class="search-input" type="text" placeholder="搜索..." autocomplete="off" data-zh="搜索..." data-en="Search..." data-zh-TW="搜尋..." data-ja="検索..." data-es="Buscar..." data-ar="بحث..." data-fr="Recherche...">
+                <button id="search-btn" class="search-btn">🔍</button>
+                <div id="engine-list" class="engine-list hidden"></div>
+                <div id="search-history-list" style="position:absolute;left:0;top:110%;width:100%;z-index:99;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-info">
+            <span id="footer-start" data-zh="起始页" data-en="Start Page" data-zh-TW="起始頁" data-ja="スタートページ" data-ru="Стартовая страница" data-es="Página de inicio" data-ar="الصفحة الرئيسية" data-fr="Page d'accueil">起始页</span>🔍2025 @ <a href="https://space.bilibili.com/515626972" target="_blank" id="footer-author" data-zh="天空天堂鸟" data-en="tkttn0714" data-zh-TW="天空天堂鳥" data-ja="tkttn0714" data-ru="tkttn0714" data-fr="tkttn0714" data-es="tkttn0714" data-ar="tkttn0714">天空天堂鸟</a> |
+            <a href="https://home.071400.xyz" target="_blank" id="footer-home" data-zh="主页" data-en="Home" data-zh-TW="主頁" data-ja="ホーム" data-ru="Главная" data-es="Inicio" data-ar="الرئيسية" data-fr="Accueil">主页</a> |
+            <a href="https://071400.xyz" target="_blank" id="footer-blog" data-zh="博客" data-en="Blog" data-zh-TW="博客" data-ja="ブログ" data-ru="Блог" data-es="Blog" data-ar="مدونة" data-fr="Blog">博客</a>
+        </div>
+    </div>
+    <button id="settings-btn" class="settings-btn" title="设置">
+        <img src="icons/setting.svg" alt="设置" />
+    </button>
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-header">
+            <span id="settings-title" data-zh="设置" data-en="Settings" data-zh-TW="設定" data-ja="設定" data-fr="Paramètres" data-ru="Настройки" data-es="Configuración" data-ar="الإعدادات">设置</span>
+        </div>
+        <div class="settings-content">
+            <div>
+                <label id="label-theme-color" data-zh="主题色：" data-en="Theme Color:" data-zh-TW="主題色：" data-ja="テーマカラー：" data-fr="Couleur du thème :" data-ru="Цвет темы:" data-es="Color del tema:" data-ar="لون السمة:">主题色：</label>
+                <input type="color" id="theme-color-picker" value="#0099ff" />
+            </div>
+            <div style="margin-top:1em;">
+                <label id="label-lang" data-zh="语言：" data-en="Language:" data-zh-TW="語言：" data-ja="言語：" data-fr="Langue :" data-ru="Язык:" data-es="Idioma:" data-ar="اللغة:">语言：</label>
+                <div class="lang-select-custom" id="lang-select-custom">
+                    <div class="lang-current" id="lang-current">
+                        <img src="icons/flag/cn.png" class="lang-flag" id="lang-flag">
+                        <span id="lang-current-name">简体中文</span>
+                        <span class="lang-arrow">▼</span>
+                    </div>
+                    <div class="lang-list" id="lang-list"></div>
+                </div>
+            </div>
+            <div style="margin-top:1em;display:flex;align-items:center;gap:1em;">
+                <label id="label-night-mode" for="mode-switch" data-zh="夜间模式" data-en="Night Mode" data-zh-TW="夜間模式" data-ja="ナイトモード" data-fr="Mode nuit" data-ru="Ночной режим" data-es="Modo nocturno" data-ar="الوضع الليلي">夜间模式</label>
+                <label class="switch">
+                    <input type="checkbox" id="mode-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div style="margin-top:1em;display:flex;align-items:center;gap:1em;">
+                <label id="label-12h" for="clock-12h-switch" data-zh="12小时制" data-en="12-Hour Clock" data-zh-TW="12小時制" data-ja="12時間制" data-fr="Format 12h" data-ru="12-часовой формат" data-es="Formato 12h" data-ar="نظام 12 ساعة">12小时制</label>
+                <label class="switch">
+                    <input type="checkbox" id="clock-12h-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div style="margin-top:1em;display:flex;align-items:center;gap:1em;">
+                <label id="label-show-seconds" for="show-seconds-switch" data-zh="秒钟显示" data-en="Show Seconds" data-zh-TW="顯示秒數" data-ja="秒を表示" data-fr="Afficher les secondes" data-ru="Показывать секунды" data-es="Mostrar segundos" data-ar="عرض الثواني">秒钟显示</label>
+                <label class="switch">
+                    <input type="checkbox" id="show-seconds-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div style="margin-top:1em;">
+                <label id="label-suggest" for="suggest-switch" data-zh="搜索建议" data-en="Search Suggestions" data-zh-TW="搜尋建議" data-ja="検索候補" data-fr="Suggestions de recherche" data-ru="Поисковые подсказки" data-es="Sugerencias de búsqueda" data-ar="اقتراحات البحث">搜索建议</label>
+                <label class="switch">
+                    <input type="checkbox" id="suggest-switch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div style="margin-top:1em;">
+                <label id="label-wallpaper" data-zh="壁纸样式" data-en="Wallpaper Style" data-zh-TW="壁紙樣式" data-ja="壁紙スタイル" data-fr="Style de fond d'écran" data-ru="Стиль обоев" data-es="Estilo de fondo" data-ar="نمط الخلفية">壁纸样式</label>
+                <div class="wallpaper-select-custom" id="wallpaper-select-custom">
+                    <div class="wallpaper-current" id="wallpaper-current">
+                        <span id="wallpaper-current-name">必应每日一图</span>
+                        <span class="wallpaper-arrow">▼</span>
+                    </div>
+                    <div class="wallpaper-list" id="wallpaper-list"></div>
+                </div>
+            </div>
+            <div style="margin-top:1em;">
+                <label id="label-clock-font" data-zh="时钟字体" data-en="Clock Font" data-zh-TW="時鐘字體" data-ja="時計フォント" data-fr="Police de l'horloge" data-ru="Шрифт часов" data-es="Fuente del reloj" data-ar="خط الساعة">时钟字体</label>
+                <div class="clockfont-select-custom" id="clockfont-select-custom">
+                    <div class="clockfont-current" id="clockfont-current">
+                        <span id="clockfont-current-name">默认</span>
+                        <span class="clockfont-arrow">▼</span>
+                    </div>
+                    <div class="clockfont-list" id="clockfont-list"></div>
+                </div>
+            </div>
+            <div style="text-align:center;margin-top:1.2em;display:flex;gap:1em;justify-content:center;">
+                <a id="footer-changelog" href="https://071400.xyz/2025/04/startpage/" target="_blank" class="footer-btn" data-zh="更新日志与介绍" data-en="Changelog & Intro" data-zh-TW="更新日誌與介紹" data-ja="更新履歴と紹介" data-fr="Journal & Intro" data-ru="Изменения и инфо" data-es="Registro de cambios e introducción" data-ar="سجل التحديثات والمقدمة">更新日志与介绍</a>
+                <button id="reset-settings-btn" class="footer-btn" data-zh="恢复默认设置" data-en="Reset Settings" data-zh-TW="恢復預設設定" data-ja="デフォルトに戻す" data-fr="Réinitialiser" data-ru="Сбросить настройки" data-es="Restablecer" data-ar="استعادة الإعدادات الافتراضية">恢复默认设置</button>
+                <button id="clear-history-btn" class="footer-btn" data-zh="清空历史记录" data-en="Clear History" data-zh-TW="清空歷史記錄" data-ja="履歴を消去" data-fr="Effacer l'historique" data-ru="Очистить историю" data-es="Borrar historial" data-ar="مسح السجل">清空历史记录</button>
+            </div>
+            <div id="about-text" style="font-size:0.95em;color:#888;white-space:pre-line;"
+                data-zh="v1.3 2025-04-22 made by 天空天堂鸟"
+                data-en="v1.3 2025-04-22 made by tkttn0714"
+                data-zh-TW="v1.3 2025-04-22 由 天空天堂鳥 製作"
+                data-ja="v1.3 2025-04-22 天空天堂鳥 作成"
+                data-fr="v1.3 2025-04-22 par tkttn0714"
+                data-ru="v1.3 2025-04-22 автор: tkttn0714"
+                data-es="v1.3 2025-04-22 hecho por tkttn0714"
+                data-ar="v1.3 2025-04-22 صنعه tkttn0714"
+            >v1.3 2025-04-22 made by 天空天堂鸟</div>
+        </div>
+    </div>
+    <button id="blur-btn" style="position:fixed;right:2em;bottom:2em;z-index:2000;width:2.5em;height:2.5em;border-radius:50%;background:rgba(255,255,255,0.18);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <img id="blur-btn-icon" src="icons/focus.png" alt="专注" style="width:1.4em;height:1.4em;display:block;" />
+    </button>
+    <button id="download-btn" style="position:fixed;left:2em;bottom:2em;z-index:2000;width:2.5em;height:2.5em;border-radius:50%;background:rgba(255,255,255,0.18);border:none;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <img id="download-btn-icon" src="icons/download.png" alt="下载" style="width:1.4em;height:1.4em;display:block;" />
+    </button>
+    <div id="settings-bg-mask"></div>
+    <div id="top-toast" class="top-toast">
+        <img src="icons/exclamation.png" class="toast-icon" alt="!">
+        <span id="top-toast-text"></span>
+    </div>
+    <div id="custom-confirm-mask" class="custom-confirm-mask" style="display:none;">
+        <div class="custom-confirm-dialog">
+            <div class="custom-confirm-message" id="custom-confirm-message"></div>
+            <div class="custom-confirm-actions">
+                <button id="custom-confirm-ok">确定</button>
+                <button id="custom-confirm-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+    <div id="time-fullscreen-mask" style="display:none;position:fixed;z-index:3000;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.82);align-items:center;justify-content:center;flex-direction:column;transition:background 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.6s cubic-bezier(0.4,0,0.2,1);opacity:0;">
+        <div id="time-fullscreen" style="color:#fff;font-size:8vw;font-weight:700;text-shadow:0 4px 32px rgba(0,0,0,0.28);margin-bottom:0.7em;transition:color 0.6s cubic-bezier(0.4,0,0.2,1);"></div>
+        <div id="date-fullscreen" style="font-size:2.2vw;margin-bottom:1.5em;color:#fff;transition:color 0.6s cubic-bezier(0.4,0,0.2,1);text-shadow:0 2px 10px rgba(0,0,0,0.10);"></div>
+        <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1.2em;width:12vw;max-width:90vw;margin-bottom:0.5em;">
+            <button class="fullscreen-btn-common" id="time-bg-toggle">
+                <img src="icons/time_bg_change.png" alt="切换背景" style="width:1.8em;height:1.8em;display:block;" />
+            </button>
+            <button class="fullscreen-btn-common" id="time-fullscreen-btn">
+                <img src="icons/full_screen.png" alt="全屏" style="width:1.8em;height:1.8em;display:block;" />
+            </button>
+        </div>
+    </div>
+    <div id="download-dialog-mask" style="display:none;position:fixed;z-index:4000;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.32);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);align-items:center;justify-content:center;transition:opacity 0.4s;opacity:0;">
+        <div id="download-dialog" style="background:rgba(255,255,255,0.85);border-radius:1.5em;box-shadow:0 8px 32px rgba(0,0,0,0.18);padding:2.2em 2.2em 1.5em 2.2em;min-width:320px;max-width:90vw;display:flex;flex-direction:column;align-items:center;">
+            <div id="download-dialog-title" style="font-size:1.35em;font-weight:700;margin-bottom:0.7em;color:#222;text-align:center;"></div>
+            <div id="download-dialog-tip" style="font-size:0.98em;color:#888;margin-bottom:1.2em;white-space:pre-line;text-align:center;"></div>
+            <div style="display:flex;align-items:center;width:100%;gap:0.7em;">
+                <input id="download-dialog-input" type="text" style="flex:1;font-size:1.1em;padding:0.5em 1em;border-radius:1em;border:1px solid #ccc;outline:none;transition:border 0.2s;" placeholder="请输入文件链接..." />
+                <button id="download-dialog-btn" style="padding:0.5em 1.3em;font-size:1.1em;border:none;border-radius:1em;background:#0099ff;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;">✈️</button>
+            </div>
+        </div>
+    </div>
+    <script src="start.js"></script>
+</body>
+</html> 

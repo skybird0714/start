@@ -1,0 +1,7 @@
+html, body {
+    background-attachment: fixed !important;
+    overscroll-behavior: none;
+}
+body, html, .container, .search-section {
+    background-attachment: fixed !important;
+}
